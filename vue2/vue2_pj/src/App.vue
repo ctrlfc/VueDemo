@@ -10,18 +10,20 @@
                 {{item.label}}
             </li>
         </ul>
+        <p>child tells me: {{childWords}}</p>
+        <componentA msgfromfather="you die!" @child-tell-me-something="listenToMyBoy"></componentA>
     </div>
 </template>
 
 <script>
     import Store from './store.js'
-//        console.log(Store.save("ddd"));
+    //        console.log(Store.save("ddd"));
+    import ComponentA from './components/componentA.vue'
     export default{
         data(){
             return {
                 title: 'this is a todo list',
-                items:
-//                    {
+                items: //                    {
 //                        label: 'coding',
 //                        isFinished: true
 //                    },
@@ -29,10 +31,12 @@
 //                        label: 'walking',
 //                        isFinished: true
 //                    }
-                    Store.fetch(),
-                newItem: ''
+                        Store.fetch(),
+                newItem: '',
+                childWords:'',
             }
         },
+        components: {ComponentA},
         watch: {
             items: {
                 handler(items){
@@ -53,6 +57,9 @@
                     isFinished: false
                 });
                 this.newItem = ''
+            },
+            listenToMyBoy(msg){
+                this.childWords = msg;
             }
         }
     }
