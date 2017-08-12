@@ -1,2 +1,2 @@
-# vue-pass
+# VueDemo
 A vuejs learning diary..
